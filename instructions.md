@@ -1,4 +1,4 @@
-# Specification Phase Exercise
+# Web Application Exercise
 
 A little exercise to build a web application following an agile process.
 
@@ -13,6 +13,8 @@ We will use a Python-centric web application technology stack, consisting of:
 ## Mobile-first design
 
 The design of this web application must be suitable for use on a mobile phone. The design need not be responsive and the design need not look great on a tablet or desktop/laptop computer.
+
+You are not required to produce wireframes, design mockups, or a clickable prototype for this application. However, you are encouraged to do so if you wish.
 
 ## Agile development
 
