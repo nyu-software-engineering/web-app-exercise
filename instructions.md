@@ -58,6 +58,7 @@ The project will consist of two sprints, i.e. increments of work, each of which 
 
 - for each sprint, teams must maintain a "task board" where they track the progress of their user stories - see example screenshot below.
 - task boards should be created as Projects in the team's GitHub repository - one for each sprint.
+- prefix the name of each project with the team name or number, followed by the sprint number, e.g. "`Team 7 - Sprint 1`", "`Team 7 - Sprint 2`", etc.
 
 A link to the Projects page should be included in the `README.md` file.
 
