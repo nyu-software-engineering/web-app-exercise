@@ -78,4 +78,4 @@ Team members are required to work from a single GitHub shared repository.
 
 The project must be submitted by pushing to the GitHub repository. The `main` branch will be considered the final code.
 
-Teams do not need to deploy the application to a server.
+Teams do not need to deploy the application to a server. It must simply work when run locally.
