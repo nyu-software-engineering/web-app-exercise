@@ -10,7 +10,7 @@ We will use a Python-centric web application technology stack, consisting of:
 - A Python back-end using [flask](https://flask.palletsprojects.com/en/2.2.x/)
 - A MongoDB database connected to the Python back-end using [pymongo](https://pymongo.readthedocs.io/en/stable/)
 
-## Mobile-first design
+## Design
 
 The design of this web application must be suitable for use on a mobile phone. The design need not be responsive and the design need not look great on a tablet or desktop/laptop computer.
 
