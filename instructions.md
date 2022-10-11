@@ -33,6 +33,7 @@ Teams must work following an "agile" methodology. While there are exist variety 
 Teams must create a public channel in the course Discord server to use for team communication
 
 - teams are expected to self-organize and create and join the channel themselves
+- name the Discord channel after your team, e.g. `team-7`.
 
 ### Product vision statement
 
