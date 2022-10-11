@@ -16,6 +16,14 @@ The design of this web application must be suitable for use on a mobile phone. T
 
 You are not required to produce wireframes, design mockups, or a clickable prototype for this application. However, you are encouraged to do so if you wish.
 
+The application must consist of at least 6 different screens.
+
+- at least 2 of these must display data retrieved from the database.
+- at least 1 of these must allow the user to add data to the database.
+- at least 1 of these must allow the user to edit data in the database.
+- at least 1 of these must allow the user to delete data from the database.
+- at least 1 of these must allow the user to search for data in the database.
+
 ## Agile development
 
 Teams must work following an "agile" methodology. While there are exist variety of ways teams often implement so-called agile development, in our case, this means specifically the following:
