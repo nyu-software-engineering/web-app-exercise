@@ -90,6 +90,6 @@ Team members are required to work from a single GitHub shared repository.
 
 ### Submitting
 
-The project must be submitted by pushing to the GitHub repository. The `main` branch will be considered the final code.
+The project must be submitted by pushing to the GitHub repository. The `main` branch will be considered the final code. Any `.env` files must be submitted to admins/managers via the team's messenger channel.
 
 Teams do not need to deploy the application to a server. It must simply work when run locally.
