@@ -10,7 +10,9 @@ We will use a Python-centric web application technology stack, consisting of:
 - A Python back-end using [flask](https://flask.palletsprojects.com/en/2.2.x/)
 - A MongoDB database connected to the Python back-end using [pymongo](https://pymongo.readthedocs.io/en/stable/)
 
-Credentials for connecting to the database must be stored in a [.env](https://knowledge.kitchen/content/courses/software-engineering/slides/flask-pymongo/#combined) file and not included in version control and shared among teammates (and admins/managers) using the team's messenger system.
+Credentials for connecting to the database must be stored in a [.env](https://knowledge.kitchen/content/courses/software-engineering/slides/flask-pymongo/#combined) file and not included in version control and shared among teammates (and admins/managers) using the team's messenger system. Use the [`dotenv`](https://pypi.org/project/python-dotenv/) or similar module to retrieve values from this file within code.
+
+If your application requires user authentication, we recommend using the [`flask-login`](https://pypi.org/project/Flask-Login/) module, which makes it relatively simple to implement user accounts.
 
 ## Design
 
@@ -54,7 +56,7 @@ A link to the Issues page should be included in the `README.md` file.
 
 The project will consist of two sprints, i.e. increments of work, each of which will last for one week.
 
-- towards the end of the first sprint (but no later than 2 after the completion of the first sprint), teams must have scheduled a meeting with a stakeholder (i.e. professor, tutor, or grader) to demo and solicit feedback on the work done so far.
+- towards the end of the first sprint (but no later than 2 days after the completion of the first sprint), teams must have scheduled a meeting with a stakeholder (i.e. professor, tutor, or grader) to demo and solicit feedback on the work done so far.
 - at the end of the second sprint, teams should be prepared to demo the project to a wider audience if requested.
 
 ### Task boards
@@ -83,7 +85,7 @@ Teams must hold 3 or more "daily" standup meetings per week.
 
 Team members are required to work from a single GitHub shared repository.
 
-- each team member must be able to push and bull to and from the shared repository.
+- each team member must be able to push and pull to and from the shared repository.
 - each member's code contributions will be tracked, so team members must use their own accounts when making code changes.
 - code changes must be done in branches in the same repository, not in the `main` branch and not in forked repositories.
 - when a code change is complete, the branch should be pushed to GitHub and a pull request should be created using GitHub's interface. Another team member must approve the pull request and merge it into the `main` branch if it is good code.
@@ -92,4 +94,4 @@ Team members are required to work from a single GitHub shared repository.
 
 The project must be submitted by pushing to the GitHub repository. The `main` branch will be considered the final code. Any `.env` files must be submitted to admins/managers via the team's messenger channel.
 
-Teams do not need to deploy the application to a server. It must simply work when run locally.
+Teams do not need to deploy the application to a server. It must simply work when run locally. However, if an online deployment is desired, we recommend hosting it with [Digital Ocean](https://m.do.co/c/4d1066078eb0) (referral link with discount code).
