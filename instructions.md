@@ -52,6 +52,10 @@ To begin, teams must develop a set of user stories that define the product they 
 
 A link to the Issues page should be included in the `README.md` file.
 
+### Document the steps necessary to run the software
+
+The `README.md` file must include any steps that are necessary to clone, configure, and run the software. These steps must be exhaustive so that anyone who views the project on GitHub has all the information they might need to get the software running on their own local machine.
+
 ### Incremental work
 
 The project will consist of two sprints, i.e. increments of work, each of which will last for one week.
@@ -85,10 +89,11 @@ Teams must hold 3 or more "daily" standup meetings per week.
 
 Team members are required to work from a single GitHub shared repository.
 
+- all team members are expected to contribute to the main code of the project.
 - each team member must be able to push and pull to and from the shared repository.
-- each member's code contributions will be tracked, so team members must use their own accounts when making code changes.
+- each member's code and workflow contributions will be tracked, so team members must use their own accounts when making code changes.
 - code changes must be done in branches in the same repository, not in the `main` branch and not in forked repositories.
-- when a code change is complete, the branch should be pushed to GitHub and a pull request should be created using GitHub's interface. Another team member must approve the pull request and merge it into the `main` branch if it is good code.
+- when a code change is complete, the branch should be pushed to GitHub and a pull request should be created using GitHub's interface. Another team member must approve the pull request and merge it into the `main` branch if it is good code. All team members are expected to share the burden of reviewing and merging pull requests opened by teammates.
 
 ### Submitting
 
