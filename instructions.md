@@ -10,9 +10,14 @@ We will use a Python-centric web application technology stack, consisting of:
 - A Python back-end using [flask](https://flask.palletsprojects.com/en/2.2.x/)
 - A MongoDB database connected to the Python back-end using [pymongo](https://pymongo.readthedocs.io/en/stable/)
 
-Credentials for connecting to the database must be stored in a [.env](https://knowledge.kitchen/content/courses/software-engineering/slides/flask-pymongo/#combined) file and not included in version control and shared among teammates (and admins/managers) using the team's messenger system. Use the [`dotenv`](https://pypi.org/project/python-dotenv/) or similar module to retrieve values from this file within code.
+Credentials for connecting to the database must be stored in a [.env](https://knowledge.kitchen/content/courses/software-engineering/slides/flask-pymongo/#combined) file.
 
-If your application requires user authentication, we recommend using the [`flask-login`](https://pypi.org/project/Flask-Login/) module, which makes it relatively simple to implement user accounts.
+- This file must not be included in version control, since it contains sensitive private data.
+- Share this file among teammates (and admins/managers) using the team's messenger system.
+- Use the [`dotenv`](https://pypi.org/project/python-dotenv/) or similar module to retrieve values from this file within code.
+- Include an `env.example` file in the repository that shows the format of the `.env` file that should be created, but includes only dummy data instead of the real values for each environmental variable.
+
+If your application requires user authentication, use the [`flask-login`](https://pypi.org/project/Flask-Login/) module, which makes it relatively simple to implement user accounts.
 
 ## Design
 
