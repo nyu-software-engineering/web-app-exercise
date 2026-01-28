@@ -97,11 +97,11 @@ Team members are required to work from a single GitHub shared repository.
 - all team members are expected to contribute to the main code of the project.
 - each team member must be able to push and pull to and from the shared repository.
 - each member's code and workflow contributions will be tracked, so team members must use their own accounts when making code changes.
-- code changes must be done in branches in the same repository, not in the `main` branch and not in forked repositories.
-- when a code change is complete, the branch should be pushed to GitHub and a pull request should be created using GitHub's interface. Another team member must approve the pull request and merge it into the `main` branch if it is good code. All team members are expected to share the burden of reviewing and merging pull requests opened by teammates.
+- code changes must be done in branches in the same repository, not in the `main`/`master` branch and not in forked repositories.
+- when a code change is complete, the branch should be pushed to GitHub and a pull request should be created using GitHub's interface. Another team member must approve the pull request and merge it into the `main`/`master` branch if it is good code. All team members are expected to share the burden of reviewing and merging pull requests opened by teammates.
 
 ### Submitting
 
-The project must be submitted by pushing to the GitHub repository. The `main` branch will be considered the final code. Any `.env` files must be submitted to admins/managers via the team's messenger channel.
+The project must be submitted by pushing to the GitHub repository. The `main`/`master` branch will be considered the final code. Any `.env` files must be submitted to admins/managers via the team's messenger channel.
 
 Teams do not need to deploy the application to a server. It must simply work when run locally. However, if an online deployment is desired, we recommend hosting it with [Digital Ocean](https://m.do.co/c/4d1066078eb0) (referral link with discount code).
