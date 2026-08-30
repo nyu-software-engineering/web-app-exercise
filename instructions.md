@@ -94,14 +94,17 @@ Teams must hold 3 or more "daily" standup meetings per week.
 
 Team members are required to work from a single GitHub shared repository.
 
+To create it, exactly one member of the team - decide among yourselves who - clicks the `Fork` button on this repository to make a copy of it in their own GitHub account. That member then gives the rest of the team access to it: in the new repository's `Settings` tab, under `Collaborators and teams`, add each teammate and the course admins by their GitHub usernames. Everyone else clones that one shared repository.
+
 - all team members are expected to contribute to the main code of the project.
 - each team member must be able to push and pull to and from the shared repository.
 - each member's code and workflow contributions will be tracked, so team members must use their own accounts when making code changes.
-- code changes must be done in branches in the same repository, not in the `main`/`master` branch and not in forked repositories.
+- code changes must be done in branches in the team's own repository, not in the `main`/`master` branch and not in further forks or copies of it. Only the one team repository exists, and everyone works within it.
 - when a code change is complete, the branch should be pushed to GitHub and a pull request should be created using GitHub's interface. Another team member must approve the pull request and merge it into the `main`/`master` branch if it is good code. All team members are expected to share the burden of reviewing and merging pull requests opened by teammates.
+- because the team's repository is itself a fork of this one, GitHub will set the `base repository` of a new pull request to this repository rather than to your team's. Change it back to your own team's repository, and check that the branch beside it is your team's `main`/`master` branch. Otherwise you are asking the instructor to merge your work, and your teammates will not be able to review or merge it.
 
 ### Submitting
 
-The project must be submitted by pushing to the GitHub repository. The `main`/`master` branch will be considered the final code. Any `.env` files must be submitted to admins/managers via the team's messenger channel.
+The project must be submitted by pushing to the team's GitHub repository. The `main`/`master` branch will be considered the final code. Post the web address of the team's repository in the team's Discord channel. Any `.env` files must be submitted to admins/managers via the team's messenger channel.
 
 Teams do not need to deploy the application to a server. It must simply work when run locally. However, if an online deployment is desired, we recommend hosting it with [Digital Ocean](https://m.do.co/c/4d1066078eb0) (referral link with discount code).
