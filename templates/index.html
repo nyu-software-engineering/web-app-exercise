@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Recent posts</h2>
+
+  {% if items %}
+    {% for item in items %}
+      <div class="card">
+        <span class="badge badge-{{ item.type }}">{{ item.type | capitalize }}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.category }} · {{ item.building }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No posts yet.</p>
+  {% endif %}
+{% endblock %}
