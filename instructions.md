@@ -103,7 +103,7 @@ python3 .automations/setup.py   # Mac/Linux
 python .automations/setup.py    # Windows
 ```
 
-Fix any problems it reports, then approve the hooks in each AI coding tool you use, as the script describes.
+Fix any problems it reports, then approve the hooks in each AI coding tool you have in this environment, as the script describes.
 
 - all team members are expected to contribute to the main code of the project.
 - each team member must be able to push and pull to and from the shared repository.

@@ -206,16 +206,16 @@ def main():
 
     print("\nAny use of AI to edit code in this repository is tracked.")
     if any(installed.values()):
-        print("You are required to approve the hooks in each AI tool you use (each asks you once):")
+        print("You are required to approve the hooks in each AI tool you have in this environment (each asks you once):")
     else:
-        print("Approve the hooks in each AI tool you use (each asks you once):")
+        print("Approve the hooks in each AI tool you have in this environment (each asks you once):")
     for agent in AGENTS:
         print(f"  - {agent['name']}: {agent['approval']}")
     print(
         "  Editors that run entirely in the web browser (vscode.dev, and github.dev opened with the . key on GitHub)\n"
         "  can't run these hooks, so AI use in them is not recorded. Use an editor on your computer or a Codespace."
     )
-
+    print()
 
     for note in notes:
         print(f"Note: {note}")
