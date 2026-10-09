@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <nav class="tabs">
+    <a href="{{ url_for('home') }}" class="{{ 'active' if not active_type }}">All</a>
+    {% for t in ITEM_TYPES %}
+      <a href="{{ url_for('home', type=t) }}" class="{{ 'active' if active_type == t }}">{{ t | capitalize }}</a>
+    {% endfor %}
+  </nav>
+
+  {% if items %}
+    {% for item in items %}
+      <div class="card">
+        <span class="badge badge-{{ item.type }}">{{ item.type | capitalize }}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.category }} · {{ item.building }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty">No {{ active_type or "" }} posts yet.</p>
+  {% endif %}
+{% endblock %}
