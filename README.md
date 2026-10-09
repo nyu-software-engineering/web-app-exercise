@@ -1,19 +1,103 @@
-# Web Application Exercise
+# Campus Lost & Found
 
-A little exercise to build a web application following an agile development process. See the [instructions](instructions.md) for more detail.
+A mobile-friendly web app for reporting and finding items lost or found on NYU's campus. Built with Flask and MongoDB by Team ByteMe, following an agile development process.
 
 ## Product vision statement
 
-See instructions. Delete this line and place the Product Vision Statement here.
+Campus Lost & Found helps NYU students and staff quickly report, search for, and reclaim items lost or found anywhere on campus, all from their phone.
+
+## Team members
+
+- [Tracy Wang](https://github.com/TracyWang0904)
+- [Emma Ao](https://github.com/emma6594)
+- [Jingjing Wang](https://github.com/JingjingWang129)
+- [Uuriintuya Ganzorig](https://github.com/Uuriii1003)
 
 ## User stories
 
-See instructions. Delete this line and place a link to the user stories here.
+User stories are tracked as [GitHub Issues](https://github.com/software-students-fall2026/web-app-exercise-byteme/issues).
+
+## Task boards
+pass
 
 ## Steps necessary to run the software
 
-See instructions. Delete this line and place instructions to download, configure, and run the software here.
+### 1. Prerequisites
 
-## Task boards
+- [Python](https://www.python.org/downloads/) 3.10 or newer
+- [Git](https://git-scm.com/downloads)
+- Access to a MongoDB database. We use a shared [MongoDB Atlas](https://www.mongodb.com/atlas) cluster; the connection details are in the `.env` file shared privately with team members and course admins.
 
-See instructions. Delete this line and place a link to the task boards here.
+### 2. Clone the repository
+
+```bash
+git clone https://github.com/software-students-fall2026/web-app-exercise-byteme.git
+cd web-app-exercise-byteme
+```
+
+### 3. Create a virtual environment and install dependencies
+
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Windows (PowerShell):
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+### 4. Configure environment variables
+
+Create a file named `.env` in the project root. Use `env.example` as a template:
+
+```bash
+cp env.example .env
+```
+
+Then fill in the real values:
+
+| Variable | Description |
+|---|---|
+| `MONGO_URI` | MongoDB connection string, e.g. `mongodb+srv://<user>:<password>@<cluster-host>/` |
+| `MONGO_DBNAME` | Database name: `lost_and_found` |
+| `SECRET_KEY` | Any long random string (used by Flask to sign session cookies) |
+
+The `.env` file contains private credentials and must never be committed. It is already listed in `.gitignore`.
+
+### 5. Run the app
+
+```bash
+python app.py
+```
+
+Open http://127.0.0.1:8000 in a browser.
+
+The app is designed for phones. On a computer, use your browser's mobile view: in Chrome, open DevTools (`Cmd + Option + I` / `Ctrl + Shift + I`) and click "Toggle device toolbar".
+
+> If port 8000 is already in use on your machine, change the port in the last line of `app.py`.
+
+## Data model
+
+All posts are stored in a single MongoDB collection, `items`:
+
+| Field | Type | Description |
+|---|---|---|
+| `_id` | ObjectId | created automatically by MongoDB |
+| `type` | string | `"lost"` or `"found"` |
+| `title` | string | short item name, e.g. "Black AirPods case" |
+| `description` | string | more details about the item |
+| `category` | string | one of `CATEGORIES` in `constants.py` |
+| `building` | string | one of `BUILDINGS` in `constants.py` |
+| `location` | string | room or spot, e.g. "4th floor" |
+| `date` | datetime | when the item was lost or found |
+| `contact` | string | email or phone of the poster |
+| `status` | string | `"open"` or `"claimed"` |
+| `created_at` | datetime | when the post was created |
+| `updated_at` | datetime | when the post was last edited |
