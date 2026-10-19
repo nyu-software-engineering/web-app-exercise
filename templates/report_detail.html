@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="report-detail">
+  <a href="/reports" class="back-link">← Back to Reports</a>
+
+  <div class="detail-icon">
+    🎒
+  </div>
+
+  <div class="detail-heading">
+    <h1>{{ report.item }}</h1>
+    <span class="status-badge">{{ report.type | capitalize }}</span>
+  </div>
+
+  <p class="detail-info">📍 {{ report.location }}</p>
+  <p class="detail-info">📅 {{ report.date }}</p>
+
+  <h2>Description</h2>
+  <p>{{ report.description }}</p>
+
+  <a href="mailto:{{ report.contact }}" class="contact-button">
+    Contact Reporter
+  </a>
+</div>
+{% endblock %}

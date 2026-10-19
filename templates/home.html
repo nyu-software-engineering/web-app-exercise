@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block title %}NYU Lost & Found{% endblock %}
+
+{% block content %}
+<section class="home">
+    <h1 class="home-title">
+        NYU
+        <span>Lost &amp; Found</span>
+    </h1>
+
+    <div class="home-actions">
+        <a href="/report/lost" class="action-card">
+            Report Lost Item
+        </a>
+
+        <a href="/report/found" class="action-card">
+            Report Found Item
+        </a>
+    </div>
+
+    <a href="/reports" class="browse-link">
+        Browse Reports
+    </a>
+</section>
+{% endblock %}

@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+
+{% block title %}Browse Reports{% endblock %}
+
+{% block content %}
+<section class="browse-page">
+
+    <a href="/" class="back-link">← Back</a>
+    <h1 class="page-title">Browse Reports</h1>
+
+    <form method="GET" action="/reports" class="browse-controls">
+
+        <input
+            type="search"
+            name="q"
+            placeholder="Search items or locations..."
+            value="{{ request.args.get('q', '') }}"
+            class="search-input"
+        >
+
+        
+        <div class="type-filters">
+            <a href="/reports"
+            class="filter-tab {% if not request.args.get('type') %}active{% endif %}">
+                All
+            </a>
+
+            <a href="/reports?type=lost"
+            class="filter-tab {% if request.args.get('type') == 'lost' %}active{% endif %}">
+                Lost
+            </a>
+
+            <a href="/reports?type=found"
+            class="filter-tab {% if request.args.get('type') == 'found' %}active{% endif %}">
+                Found
+            </a>
+        </div>
+
+
+        <div class="filter-row">
+            <select name="sort">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+            </select>
+
+            <select name="category">
+                <option value="">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Keys">Keys</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button type="submit" class="apply-button">Apply</button>
+        </div>
+    </form>
+
+    <div class="reports-grid">
+        {% for report in reports %}
+        <a href="/reports/{{ report.id }}" class="report-card">
+
+            <div class="report-card-image">
+                {% if report.category == "Electronics" %}
+                    🎧
+                {% elif report.category == "Accessories" %}
+                    👜
+                {% elif report.category == "Clothing" %}
+                    👕
+                {% elif report.category == "Keys" %}
+                    🔑
+                {% else %}
+                    📦
+                {% endif %}
+            </div>
+
+            <div class="report-card-info">
+                <h2>{{ report.item }}</h2>
+                <span class="report-status {{ report.type }}">
+                    {{ report.type|capitalize }}
+                </span>
+                <p>📍 {{ report.location }}</p>
+                <p>{{ report.date }}</p>
+            </div>
+
+        </a>
+        {% else %}
+        <p class="empty-state">No reports found.</p>
+        {% endfor %}
+    </div>
+
+</section>
+{% endblock %}

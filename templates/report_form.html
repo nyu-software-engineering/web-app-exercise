@@ -1,0 +1,89 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    Report {{ report_type|capitalize }} Item
+{% endblock %}
+
+{% block content %}
+<section class="report-page">
+
+    <a href="/" class="back-link">← Back</a>
+
+    <h1>Report {{ report_type|capitalize }} Item</h1>
+
+    <form method="POST" class="report-form">
+
+        <div class="form-group">
+            <label for="item">Item Name *</label>
+            <input
+                type="text"
+                id="item"
+                name="item"
+                placeholder="e.g. AirPods Pro"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category *</label>
+            <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Keys">Keys</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date {{ report_type|capitalize }} *</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="location">
+                {% if report_type == "lost" %}
+                    Last Seen Location *
+                {% else %}
+                    Found Location *
+                {% endif %}
+            </label>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="e.g. Bobst Library, 3rd floor"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+                placeholder="Color, brand, identifying details..."
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="contact">Contact Information *</label>
+            <input
+                type="text"
+                id="contact"
+                name="contact"
+                placeholder="e.g. yourname@nyu.edu"
+                required
+            >
+        </div>
+
+        <button type="submit" class="submit-button">
+            Submit {{ report_type|capitalize }} Report
+        </button>
+
+    </form>
+</section>
+{% endblock %}
