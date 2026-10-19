@@ -20,8 +20,66 @@
   <h2>Description</h2>
   <p>{{ report.description }}</p>
 
-  <a href="mailto:{{ report.contact }}" class="contact-button">
+<button type="button" class="contact-button" id="open-contact">
     Contact Reporter
-  </a>
+</button>
+
+<dialog
+    id="contact-dialog"
+    class="contact-dialog"
+    data-recipient="{{ report.contact }}"
+    data-item="{{ report.item }}"
+>    <div class="contact-dialog-header">
+        <h2>Contact Reporter 💌</h2>
+        <button type="button" id="close-contact" aria-label="Close">
+            &times;
+        </button>
+    </div>
+
+    <p>Send a message about {{ report.item }}.</p>
+
+    <form id="contact-form">
+        <label for="contact-message">Your message</label>
+
+        <textarea
+            id="contact-message"
+            rows="5"
+            placeholder="Hi! I think this might be my item..."
+            required
+        ></textarea>
+
+        <button type="submit" class="contact-button">
+            Open Email to Send
+        </button>
+    </form>
+</dialog>
+
+<script>
+    const dialog = document.getElementById("contact-dialog");
+    const form = document.getElementById("contact-form");
+
+    document.getElementById("open-contact").addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+    document.getElementById("close-contact").addEventListener("click", () => {
+        dialog.close();
+    });
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const message = document.getElementById("contact-message").value;
+        const recipient = dialog.dataset.recipient;
+        const subject = "NYU Lost & Found: " + dialog.dataset.item;
+
+        const emailLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+        window.open(gmailLink, "_blank");
+    });
+</script>
+
 </div>
 {% endblock %}

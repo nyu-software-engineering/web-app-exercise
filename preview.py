@@ -1,4 +1,4 @@
-
+from flask import Flask, render_template, request, redirect
 from flask import Flask, render_template, abort
 
 app = Flask(__name__)
@@ -53,14 +53,24 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/report/lost")
+@app.route("/report/lost", methods=["GET", "POST"])
 def report_lost():
+    if request.method == "POST":
+        return redirect("/possible-matches")
+
     return render_template("report_form.html", report_type="lost")
 
 
-@app.route("/report/found")
+@app.route("/report/found", methods=["GET", "POST"])
 def report_found():
+    if request.method == "POST":
+        return redirect("/confirmation")
+
     return render_template("report_form.html", report_type="found")
+
+@app.route("/confirmation")
+def confirmation():
+    return render_template("confirmation.html")
 
 
 @app.route("/reports")
@@ -80,6 +90,18 @@ def report_detail(report_id):
 
     return render_template("report_detail.html", report=report)
 
+
+@app.route("/possible-matches")
+def possible_matches():
+    sample_matches = [
+        report for report in reports
+        if report["type"] == "found"
+    ]
+
+    return render_template(
+        "possible_matches.html",
+        matches=sample_matches
+    )
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

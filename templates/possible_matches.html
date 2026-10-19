@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="matches-page">
+
+    <a href="/reports" class="back-link">← Browse Reports</a>
+
+    <div class="matches-heading">
+        <h1>Report Submitted! 💜</h1>
+        <p>We found some items that might match yours!</p>
+    </div>
+
+    {% if matches %}
+    <div class="reports-grid">
+
+        {% for report in matches %}
+        <a href="/reports/{{ report.id }}" class="report-card">
+
+            <div class="report-card-image">
+                🎒
+            </div>
+
+            <div class="report-card-info">
+                <span class="report-status {{ report.type }}">
+                    {{ report.type | capitalize }}
+                </span>
+
+                <h2>{{ report.item }}</h2>
+                <p>📍 {{ report.location }}</p>
+                <p>📅 {{ report.date }}</p>
+            </div>
+
+        </a>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+    <div class="empty-state">
+        <h2>No matches yet!</h2>
+        <p>Your report has been submitted successfully.</p>
+        <p>You can always check back later.</p>
+    </div>
+    {% endif %}
+
+    <a href="/reports" class="primary-button">
+        Browse All Reports
+    </a>
+
+    </div>
+    {% endblock %}
