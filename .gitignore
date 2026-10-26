@@ -5,6 +5,10 @@
 .vscode/
 .vscode/settings.json
 
+# claude code personal settings
+.claude/settings.local.json
+CLAUDE.local.md
+
 # emacs backups
 *~
 
