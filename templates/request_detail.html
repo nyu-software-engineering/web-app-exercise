@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{ item.course }} - StudyBuddy{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">Back to feed</a>
+<span class="tag">{{ item.course }}</span>
+<h1>{{ item.topic }}</h1>
+<p class="meta">{{ item.time | nice_time }} · {{ item.location }}</p>
+
+<h2>Organizer</h2>
+{% if organizer %}
+<p><a href="{{ url_for('profile_detail', profile_id=organizer._id) }}">{{ organizer.name }}</a></p>
+{% else %}
+<p>Unknown</p>
+{% endif %}
+
+<h2>Joined ({{ joined | length }})</h2>
+{% if joined %}
+<ul class="plain">
+  {% for p in joined %}
+  <li><a href="{{ url_for('profile_detail', profile_id=p._id) }}">{{ p.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">Nobody has joined yet.</p>
+{% endif %}
+{% for p in joined if p._id | string == request.args.get('joined') %}
+<p class="tag">You joined as {{ p.name }}</p>
+{% endfor %}
+
+{% if not current_user.is_authenticated %}
+<p>
+  <a href="{{ url_for('login') }}">Log in</a>
+  to join this session.
+</p>
+
+{% elif is_organizer %}
+<p>You organized this session.</p>
+
+{% elif has_joined %}
+<p>You’ve joined this session.</p>
+
+{% else %}
+<form
+  method="post"
+  action="{{ url_for('join_request', request_id=item._id) }}"
+  class="form"
+>
+  {{ join_form.hidden_tag() }}
+  <p>Joining as {{ current_user.name }}.</p>
+  <button type="submit">Join this session</button>
+</form>
+{% endif %}
+
+{% if is_organizer %}
+<a href="{{ url_for('delete_request', request_id=item._id) }}" class="delete-link">
+  Delete this session
+</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Create a session - StudyBuddy{% endblock %}
+
+{% block content %}
+<h1>Create a study session</h1>
+<p>Organizer: {{ current_user.name }}</p>
+
+{% if form.errors %}
+<div role="alert">
+  <p>Please fix the following:</p>
+  <ul>
+    {% for field_name, errors in form.errors.items() %}
+      {% for error in errors %}
+      <li>{{ form[field_name].label.text }}: {{ error }}</li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<form method="post" class="form">
+  {{ form.hidden_tag() }}
+
+  {% for field in [
+      form.course,
+      form.topic,
+      form.description,
+      form.max_participants,
+      form.time,
+      form.location
+  ] %}
+  <label for="{{ field.id }}">
+    {{ field.label.text }}
+    {{ field() }}
+  </label>
+  {% endfor %}
+
+  <button type="submit">Create session</button>
+</form>
+{% endblock %}
