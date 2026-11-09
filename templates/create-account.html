@@ -1,0 +1,45 @@
+      
+</head>
+<body>
+    <main class="create-account-container">
+        <div class="logo" aria-hidden="true"> [logo] </div>
+
+        <h1>Welcome to Laundry App!</h1>
+        <p class="subtitle">
+            Create account to manage your laundry and check machine availability.
+        </p>
+
+        {% if error %}
+            <p role="alert">{{ error }}</p>
+        {% endif %}
+
+        <form action="/register" method="POST">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="abc1234"
+                autocomplete="username"
+                required
+            >
+
+            <label for="phone">Phone Number</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="123-456-7890"
+                autocomplete="tel"
+                required
+            >
+
+            <button type="submit">Create Account</button>
+        </form>
+
+        <p class="signup">
+            Already have an account? <a href="/login">Sign in</a>
+        </p>
+    </main>
+</body>
+</html>
