@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{% block title %}Album Tracker{% endblock %}</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+    
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}"
+                {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>
+                    Home
+            </a>
+
+            <a href="{{ url_for('albums.search_albums') }}"
+            {% if request.endpoint == 'albums.search_albums' %}aria-current="page"{% endif %}>
+                Search
+            </a>
+
+            {# Only your own profile counts as "this page", not other people's #}
+            {% set on_own_profile = current_user.is_authenticated and (
+                request.endpoint in ['profiles.my_profile', 'profiles.edit_profile']
+                or (request.endpoint == 'profiles.view_profile'
+                    and request.view_args.username == current_user.username)
+            ) %}
+            <a href="{{ url_for('profiles.my_profile') }}"
+            {% if on_own_profile %}aria-current="page"{% endif %}>
+                Profile
+            </a>
+            
+            {% if current_user.is_authenticated %}
+            <form class="nav-logout" method="POST" action="{{ url_for('auth.logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit">Log out</button>
+            </form>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}">Log in</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block flashes %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

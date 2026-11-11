@@ -1,0 +1,138 @@
+.search-form {
+    background: white;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.search-row {
+    display: flex;
+    gap: 8px;
+}
+
+.search-row input[type="search"] {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #111;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background: #333;
+}
+
+.search-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.search-filter label[for="sort"] {
+    margin-left: 8px;
+}
+
+.search-filter select {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.search-summary {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.search-meta {
+    margin: 6px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.search-meta a {
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.album-quick-add {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.album-quick-add form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.album-quick-add button {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    color: #111;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.album-quick-add button:hover {
+    background: #f3f3f3;
+}
+
+.album-quick-add a {
+    color: #111;
+    font-weight: 600;
+}
+
+.album-ratings {
+    margin-top: 10px;
+}
+
+.album-ratings summary {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.album-entry {
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #666;
+}
+
+.album-entry .review {
+    margin: 5px 0 0;
+}
+
+.empty {
+    color: #666;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}

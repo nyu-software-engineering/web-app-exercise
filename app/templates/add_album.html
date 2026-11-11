@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}Add an Album - Album Tracker{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_album.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="add-album-container">
+  <h1>Add an Album</h1>
+  <p class="add-album-subtitle">Track an album you've listened to or want to hear.</p>
+
+  <form method="POST" action="" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="form-group album-title-group">
+      <label for="title">Album Title</label>
+
+      <input
+        type="text"
+        id="title"
+        name="title"
+        autocomplete="off"
+        required
+      >
+
+      <div id="album-suggestions" class="album-suggestions"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="artist">Artist</label>
+      <input type="text" id="artist" name="artist" required>
+    </div>
+
+    <div class="form-group">
+      <label for="year">Release Year (optional)</label>
+      <input type="number" id="year" name="year" min="1900" max="9999">
+    </div>
+
+    <div class="form-group">
+      <label for="cover">Cover Image (optional)</label>
+      <input type="file" id="cover" name="cover" accept="image/png,image/jpeg,image/gif,image/webp">
+    </div>
+
+    <div class="form-group">
+      <label for="status">Listening Status</label>
+      <select id="status" name="status" required>
+        <option value="" disabled selected>Select a status</option>
+        <option value="listened">Listened</option>
+        <option value="want_to_listen">Want to listen</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating (optional)</label>
+      <input
+        type="number"
+        id="rating"
+        name="rating"
+        min="1"
+        max="5"
+        step="0.5"
+        placeholder="1 to 5, halves allowed"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="review">Review (optional)</label>
+      <textarea id="review" name="review" rows="4"></textarea>
+    </div>
+
+    <button type="submit" class="add-album-button">Add Album</button>
+  </form>
+
+  <p><a href="{{ url_for('profiles.my_profile') }}">Back to Profile</a></p>
+</section>
+
+<script>
+  const titleInput = document.getElementById("title");
+  const artistInput = document.getElementById("artist");
+  const yearInput = document.getElementById("year");
+  const suggestions = document.getElementById("album-suggestions");
+
+  let searchTimeout;
+
+  titleInput.addEventListener("input", function () {
+    clearTimeout(searchTimeout);
+
+    const query = titleInput.value.trim();
+
+    suggestions.innerHTML = "";
+    suggestions.classList.remove("has-results");
+
+    if (query.length < 2) {
+      return;
+    }
+
+    searchTimeout = setTimeout(function () {
+      fetch(
+        "{{ url_for('albums.search_existing_albums') }}?q="
+        + encodeURIComponent(query)
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (albums) {
+          suggestions.innerHTML = "";
+
+          albums.forEach(function (album) {
+            const suggestion = document.createElement("button");
+
+            suggestion.type = "button";
+            suggestion.className = "album-suggestion";
+
+            let details = album.artist;
+
+            if (album.year) {
+              details += " (" + album.year + ")";
+            }
+
+            suggestion.innerHTML =
+              "<strong>" + album.title + "</strong>" +
+              "<span>" + details + "</span>";
+
+            suggestion.addEventListener("click", function () {
+              titleInput.value = album.title;
+              artistInput.value = album.artist;
+              yearInput.value = album.year || "";
+
+              suggestions.innerHTML = "";
+              suggestions.classList.remove("has-results");
+            });
+
+            suggestions.appendChild(suggestion);
+          });
+
+          if (albums.length > 0) {
+            suggestions.classList.add("has-results");
+          }
+        });
+    }, 250);
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".album-title-group")) {
+      suggestions.innerHTML = "";
+      suggestions.classList.remove("has-results");
+    }
+  });
+</script>
+
+{% endblock %}
