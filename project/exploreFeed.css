@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f6f4ef;
+}
+
+.app {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: white;
+    border-right: 1px solid #d9d5cc;
+}
+
+.nav-item {
+    display: block;
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+}
+
+.nav-item[aria-current="page"] {
+    background-color: #e3e8ff;
+}
+
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.body {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.feed {
+    width: 620px;
+}
+
+.rail {
+    flex: 1;
+}
+
+.post,
+.card,
+.player,
+.caught-up {
+    background-color: white;
+    border: 1px solid #d9d5cc;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.post {
+    border: 2px solid #16131a;
+    box-shadow: 4px 4px 0 #16131a;
+}
+
+.post-header,
+.song,
+.post-footer,
+.vote,
+.progress,
+.player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-who,
+.song-meta,
+.player-meta {
+    flex: 1;
+}
+
+.song {
+    background-color: #f6f4ef;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.save-btn {
+    margin-left: auto;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip[aria-pressed="true"] {
+    background-color: #e8ff5a;
+}
+
+button {
+    padding: 10px 18px;
+    border: 1px solid #16131a;
+    border-radius: 30px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.btn-primary,
+.play-btn {
+    background-color: #3679ff;
+    color: white;
+}

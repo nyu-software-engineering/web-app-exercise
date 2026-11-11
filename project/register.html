@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="register.css">
+    <title>Sonder</title>
+</head>
+<body>
+    <div class="page reg-page">
+        <div class="left-side">
+            <h1>Find the people who already love the songs you haven't heard yet</h1>
+            <h6>maya.k matched with you</h6>
+            <p>92% taste match - Phoebe Bridgers, Mitski</p>
+        </div>
+        <div class="right-side">
+            <div class="logo">
+                <h2>sonder</h2>
+            </div>
+            <h1>Create your account</h1>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}" role="alert"> {{ message }}</p>
+                {% endfor %}
+            {% endwith %}
+            <form class="login-form" action="/api/register" method="POST">
+                <input
+                    type="text"
+                    name = 'display_name'
+                    placeholder="Display name"
+                    class="login-input"
+                    autocomplete="name"
+                    required
+                />
+                <input
+                    type="text"
+                    name = 'username'
+                    placeholder="Username"
+                    class="login-input"
+                    autocomplete="username"
+                    required
+                />
+                <input
+                    type="text"
+                    name = 'email'
+                    placeholder="School email"
+                    class="login-input"
+                    autocomplete="email"
+                    required
+                />
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        class="login-input password-input"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    />
+                </div>
+                <button type="submit" class="buttonDesign reg-button" >
+                    Create account
+                </button>
+            </form>
+            <p><a href="login.html">Log in</a> · <a href="appScreen.html">Back to welcome</a></p>
+        </div>
+    </div>
+</body>
+</html>
