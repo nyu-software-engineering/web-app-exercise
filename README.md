@@ -4,11 +4,11 @@ A little exercise to build a web application following an agile development proc
 
 ## Product vision statement
 
-See instructions. Delete this line and place the Product Vision Statement here.
+4CAST is a predictive digital wardrobe that helps users make cohesive styling decisions, discover new outfit combinations, maximize the use of clothing they already own, and track garment utilization and textile circularity.
 
 ## User stories
 
-See instructions. Delete this line and place a link to the user stories here.
+[User Stories](https://github.com/lkykathy/web-app-exercise-4CAST/issues)
 
 ## Steps necessary to run the software
 
