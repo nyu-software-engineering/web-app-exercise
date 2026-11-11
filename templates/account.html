@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css')}}"
+    />
+    <title>Account Page</title>
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <header class="top-bar">  
+        <h1>My Posts</h1>
+        <p><a href="{{ url_for('logout') }}">Log out</a></p>
+      </header>
+      {% for post in posts if post.username == current_user.username %}
+          <div class="post">
+              {% if post.image_path %}
+              <img src="{{ url_for('static', filename=post.image_path) }}" alt="Outfit by {{ post.username }}">
+              {% endif %}            
+              <div class="post-info">
+                  <p class="username">@{{ post.username }}</p>
+                  <p>{{ post.caption }}</p>
+                  <p class="tags">{% for tag in post.hashtags %}#{{ tag }} {% endfor %}</p>
+                  <p class="likes">♡ {{ post.liked_by | length }}</p>
+                  <p class="date">{{ post.created_at.strftime('%b %d, %Y · %I:%M %p') }}</p> 
+                  {% if post.buy_links %}
+                  <p class="links">
+                      {% for link in post.buy_links %}
+                      <a href="{{ link }}" target="_blank" rel="noopener">Shop {{ loop.index }}</a>
+                      {% endfor %}
+                  </p>
+                  {% endif %}
+              </div>
+              <p><a href="{{ url_for('edit', post_id=post._id) }}">Edit Post</a></p>
+          </div>
+        {% else %}
+          <p>You have no posts</p>
+      {% endfor %}
+      {% include "_navbar.html" %}
+    </div>
+  </body>
+</html>

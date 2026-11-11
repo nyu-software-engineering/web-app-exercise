@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"/>
+    <title>Home Page</title>
+</head>
+
+<body>
+    <div id="page-wrap">
+    <header class="top-bar">
+        <h1>Virtual Closet</h1>
+        <p>Logged in as {{ current_user.username }}.</p>
+    </header>
+    {% for post in posts %}
+    <div id="post-{{ post._id }}">
+        <div class="post">
+            {% if post.image_path %}
+            <img src="{{ url_for('static', filename=post.image_path) }}" alt="Outfit by {{ post.username }}">
+            {% endif %}            
+            <div class="post-info">
+                <p class="username">@{{ post.username }}</p>
+                <p>{{ post.caption }}</p>
+                <p class="tags">{% for tag in post.hashtags %}#{{ tag }} {% endfor %}</p>
+                <form method="POST" action="{{url_for('like_post', post_id=post._id)}}">
+                    <button type="submit">
+                        {% if current_user.id in post.liked_by %}
+                            <span class="likes">♥︎ {{ post.liked_by | length }}</span>                        
+                            {% else %}
+                            <span class="likes">♡ {{ post.liked_by | length }}</span>
+                        {% endif %}
+                    </button>
+                </form>
+                <p class="date">{{ post.created_at.strftime('%b %d, %Y · %I:%M %p') }}</p>
+                {% if post.buy_links %}
+                <p class="links">
+                    {% for link in post.buy_links %}
+                    <a href="{{ link }}" target="_blank" rel="noopener">Shop {{ loop.index }}</a>
+                    {% endfor %}
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% if not posts %}
+        <p class="empty">No posts available.</p>
+    {% endif %}
+    {% include "_navbar.html" %}
+    </div>
+</body>
+
+</html>
